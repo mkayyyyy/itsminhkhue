@@ -18,7 +18,7 @@
             text-align: left;
         }
 
-        #addButton, #employeeID, #firstName, #lastName, #age, #department {
+        #addButton, #employeeID, #FirstName, #LastName, #Age, #Department {
             margin: 10px;
         }
 
@@ -96,8 +96,6 @@
             }
 
             errorMessage.textContent = "";
-
-            // Create a new row in the employee table
             const newRow = employeeTable.insertRow(-1);
             const cell1 = newRow.insertCell(0);
             const cell2 = newRow.insertCell(1);
@@ -119,8 +117,6 @@
             });
 
             cell6.appendChild(removeButton);
-
-            // Clear input fields
             document.getElementById("employeeID").value = "";
             document.getElementById("firstName").value = "";
             document.getElementById("lastName").value = "";
