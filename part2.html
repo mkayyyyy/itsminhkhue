@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Information</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        #addButton, #employeeID, #firstName, #lastName, #age, #department {
+            margin: 10px;
+        }
+
+        #errorMessage {
+            color: red;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Employee Information</h1>
+
+    <h2>Add Employee</h2>
+    <form>
+        <table>
+            <tr>
+                <th><label for="employeeID">Employee ID:</label></th>
+                <th><label for="firstName">First Name:</label></th>                   
+                <th><label for="lastName">Last Name:</label></th>
+                <th><label for="age">Age:</label></th> 
+                <th><label for="department">Department:</label></th>
+            </tr>
+            <tr>
+                <td><input type="text" id="employeeID"></td>
+                <td><input type="text" id="firstName"></td>
+                <td><input type="text" id="lastName"></td>
+                <td><input type="text" id="age"></td>
+                <td><input type="text" id="department"></td>
+            </tr>
+        <button id="addButton">Add Employee</button>
+        <div id="errorMessage"></div>
+    </form>
+
+    <h2>Employee List</h2>
+    <table id="employeeTable">
+        <tr>
+            <th>Employee ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Age</th>
+            <th>Department</th>
+            <th>Action</th>
+        </tr>
+    </table>
+
+    <script>
+        const addButton = document.getElementById("addButton");
+        const employeeTable = document.getElementById("employeeTable");
+        const errorMessage = document.getElementById("errorMessage");
+
+        addButton.addEventListener("click", function (event) {
+            event.preventDefault();
+
+            const employeeID = document.getElementById("employeeID").value;
+            const firstName = document.getElementById("firstName").value;
+            const lastName = document.getElementById("lastName").value;
+            const age = document.getElementById("age").value;
+            const department = document.getElementById("department").value;
+
+            if (!employeeID || !firstName || !lastName || !age || !department) {
+                errorMessage.textContent = "Please fill in all fields.";
+                return;
+            }
+
+            if (isNaN(age) || age < 0 || age > 100) {
+                errorMessage.textContent = "Age must be a number between 0 and 100.";
+                return;
+            }
+
+            const existingEmployeeIDs = Array.from(employeeTable.querySelectorAll("tr td:first-child")).map(td => td.textContent);
+
+            if (existingEmployeeIDs.includes(employeeID)) {
+                errorMessage.textContent = "Employee ID must be unique.";
+                return;
+            }
+
+            errorMessage.textContent = "";
+
+            // Create a new row in the employee table
+            const newRow = employeeTable.insertRow(-1);
+            const cell1 = newRow.insertCell(0);
+            const cell2 = newRow.insertCell(1);
+            const cell3 = newRow.insertCell(2);
+            const cell4 = newRow.insertCell(3);
+            const cell5 = newRow.insertCell(4);
+            const cell6 = newRow.insertCell(5);
+
+            cell1.textContent = employeeID;
+            cell2.textContent = firstName;
+            cell3.textContent = lastName;
+            cell4.textContent = age;
+            cell5.textContent = department;
+
+            const removeButton = document.createElement("button");
+            removeButton.textContent = "Remove Row";
+            removeButton.addEventListener("click", function () {
+                employeeTable.deleteRow(newRow.rowIndex);
+            });
+
+            cell6.appendChild(removeButton);
+
+            // Clear input fields
+            document.getElementById("employeeID").value = "";
+            document.getElementById("firstName").value = "";
+            document.getElementById("lastName").value = "";
+            document.getElementById("age").value = "";
+            document.getElementById("department").value = "";
+        });
+    </script>
+</body>
+</html>

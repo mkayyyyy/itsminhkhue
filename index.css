@@ -1,0 +1,90 @@
+* {
+    box-sizing: border-box;
+    font-family: Poppins;
+}
+body {
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    background-color: whitesmoke;
+}
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    gap: 16px;   
+    background-color: black; 
+    width: 100%;
+}
+.ola {
+    text-decoration: none;
+    color: white;
+    padding: 16px;
+    transition: 0.1s;
+}
+.ola.hover, .ola:focus {
+    background-color: gray;
+}
+main {
+    max-width: 768px;
+    width: 100%;
+    padding: 32px;
+    background-color: white;
+    box-shadow: 0px 0px 16px lightgray;
+    position: relative;
+}
+#header-image {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#avatar {
+    border-radius: 50%;
+}
+.input {
+    width: 100%;
+    padding: 8px;
+}
+img {
+    height: 150px;
+}
+#image-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+table {
+    width: 100%;
+}
+#email-button {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    padding: 16px;
+    transition: 0.1s;
+    width: 100%;
+    text-align: center;
+    border: 2px solid black;
+    border-radius: 8px;
+}
+#email-button:hover, #email-button:focus {
+    background-color: lightgray;
+    border: 2px solid lightgray;
+}
+#icon-row {
+    display: flex;
+    justify-content: center;
+}
+.fa {
+    padding: 16px;
+    font-size: 20px;
+    text-decoration: none;
+    border-radius: 50%;
+    color: black;
+}
+.fa:hover, .fa:focus {
+    background-color: whitesmoke;
+}
